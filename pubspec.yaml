@@ -1,0 +1,7 @@
+name: dogma_sql_connection
+version: 0.0.1
+description: SQL data connection for Dart.
+dependencies:
+  dogma_connection:
+    path: ../dogma-connection
+  test: '>=0.12.0 <0.13.0'
