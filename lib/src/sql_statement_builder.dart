@@ -65,7 +65,7 @@ class SqlStatementBuilder {
       _whereClause(buffer, query.where);
     }
 
-	  // Generate the order by clause
+    // Generate the order by clause
     var orderBy = query.orderBy;
 
     if (orderBy.isNotEmpty) {
