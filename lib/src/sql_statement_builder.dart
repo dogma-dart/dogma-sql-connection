@@ -65,7 +65,7 @@ class SqlStatementBuilder {
       _whereClause(buffer, query.where);
     }
 
-	// Generate the order by clause
+	  // Generate the order by clause
     var orderBy = query.orderBy;
 
     if (orderBy.isNotEmpty) {
@@ -75,7 +75,7 @@ class SqlStatementBuilder {
     // Generate the limit clause
     var limit = query.limit;
 
-    if (limit == Query.noLimit) {
+    if (limit != Query.noLimit) {
       buffer.write('\nLIMIT $limit');
     }
 
