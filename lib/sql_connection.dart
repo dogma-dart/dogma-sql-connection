@@ -40,13 +40,9 @@ abstract class SqlConnection implements Connection {
   //---------------------------------------------------------------------
 
   @override
-  Future<dynamic> query(Query query) async {
-    print('SqlConnection.query');
+  Stream<dynamic> query(Query query) async {
     // Get the metadata from the table to determine if a JOIN should happen
     var table = await schema.getTable(query.table) as SqlTable;
-
-    // Execute the statement
-    var rows = await executeSql(statementBuilder.query(query));
 
     // Get the columns
     var fields = query.fields;
@@ -55,24 +51,20 @@ abstract class SqlConnection implements Connection {
         : table.columns.map((column) => column.name).toList();
     var columnCount = columns.length;
 
-    // Convert the rows into a map structure
-    var values = [];
-
-    for (var row in rows) {
+    // Execute the statement
+    return executeSql(statementBuilder.query(query)).map((row) {
       var value = {};
 
       for (var i = 0; i < columnCount; ++i) {
         value[columns[i]] = row[i];
       }
 
-      values.add(value);
-    }
-
-    return values;
+      return value;
+    });
   }
 
   @override
-  Future<dynamic> execute(Command command) async {
+  Stream<dynamic> execute(Command command) async {
     return executeSql(statementBuilder.command(command));
   }
 
@@ -81,5 +73,5 @@ abstract class SqlConnection implements Connection {
   //---------------------------------------------------------------------
 
   /// Executes the SQL [statement] on the database.
-  Future<dynamic> executeSql(String statement);
+  Stream<dynamic> executeSql(String statement);
 }
