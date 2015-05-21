@@ -40,7 +40,7 @@ abstract class SqlConnection implements Connection {
   //---------------------------------------------------------------------
 
   @override
-  Stream<dynamic> query(Query query) async {
+  Stream<dynamic> query(Query query) async* {
     // Get the metadata from the table to determine if a JOIN should happen
     var table = await schema.getTable(query.table) as SqlTable;
 
@@ -52,7 +52,7 @@ abstract class SqlConnection implements Connection {
     var columnCount = columns.length;
 
     // Execute the statement
-    return executeSql(statementBuilder.query(query)).map((row) {
+    var values = executeSql(statementBuilder.query(query)).map((row) {
       var value = {};
 
       for (var i = 0; i < columnCount; ++i) {
@@ -61,6 +61,9 @@ abstract class SqlConnection implements Connection {
 
       return value;
     });
+
+    // Add the values to the stream
+    yield* values;
   }
 
   @override

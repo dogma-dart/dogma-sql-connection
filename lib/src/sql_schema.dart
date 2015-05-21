@@ -159,7 +159,7 @@ class SqlSchema {
   ///
   /// Internal use only! Non ANSI compliant databases should modify this method
   /// to provide vendor specific extensions.
-  Future<dynamic> findTableInDatabase(String table) async {
+  Future<dynamic> findTableInDatabase(String table) {
     var buffer = new StringBuffer();
 
     buffer
@@ -168,18 +168,18 @@ class SqlSchema {
       ..writeln('WHERE table_name = \'$table\'')
       ..writeln('ORDER BY ordinal_position;');
 
-    return connection.executeSql(buffer.toString());
+    return connection.executeSql(buffer.toString()).toList();
   }
 
-  Future<dynamic> clearTableInDatabase(String table) async {
+  Future<dynamic> clearTableInDatabase(String table) {
     var statement = 'TRUNCATE TABLE $table';
 
-    return connection.executeSql(table);
+    return connection.executeSql(table).toList();
   }
 
-  Future<dynamic> removeTableInDatabase(String table) async {
+  Future<dynamic> removeTableInDatabase(String table) {
     var statement = 'DROP TABLE $table';
 
-    return connection.executeSql(statement);
+    return connection.executeSql(statement).toList();
   }
 }
