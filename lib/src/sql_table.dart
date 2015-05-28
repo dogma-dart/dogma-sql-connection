@@ -4,7 +4,7 @@
 // the LICENSE file.
 
 /// Contains the [SqlTable] class.
-library dogma.sql_connection.src.sql_table;
+library dogma_sql_connection.src.sql_table;
 
 //---------------------------------------------------------------------
 // Imports

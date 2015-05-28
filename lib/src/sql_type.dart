@@ -4,7 +4,7 @@
 // the LICENSE file.
 
 /// Contains the [SqlType] enumeration.
-library dogma.sql_connection.src.sql_type;
+library dogma_sql_connection.src.sql_type;
 
 enum SqlType {
   boolean,

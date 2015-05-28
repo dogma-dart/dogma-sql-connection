@@ -4,7 +4,7 @@
 // the LICENSE file.
 
 /// Contains the [SqlSchema] class.
-library dogma.sql_connection.src.sql_schema;
+library dogma_sql_connection.src.sql_schema;
 
 //---------------------------------------------------------------------
 // Standard libraries

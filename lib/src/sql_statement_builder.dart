@@ -4,7 +4,7 @@
 // the LICENSE file.
 
 /// Contains the [SqlStatementBuilder] class.
-library dogma.sql_connection.src.sql_statement_builder;
+library dogma_sql_connection.src.sql_statement_builder;
 
 //---------------------------------------------------------------------
 // Imports

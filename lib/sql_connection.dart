@@ -4,7 +4,7 @@
 // the LICENSE file.
 
 /// An implementation of a Dogma [Connection] that interfaces with a SQL database.
-library dogma.sql_connection;
+library dogma_sql_connection;
 
 //---------------------------------------------------------------------
 // Standard libraries
@@ -67,7 +67,7 @@ abstract class SqlConnection implements Connection {
   }
 
   @override
-  Stream<dynamic> execute(Command command) async {
+  Stream<dynamic> execute(Command command) {
     return executeSql(statementBuilder.command(command));
   }
 
